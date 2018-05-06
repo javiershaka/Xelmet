@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `xemletbd` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `xemletbd`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: xelmetbd
+-- Host: 127.0.0.1    Database: xemletbd
 -- ------------------------------------------------------
 -- Server version	5.6.26-log
 
@@ -28,11 +30,10 @@ CREATE TABLE `cliente` (
   `numeroTelefonico` varchar(45) DEFAULT NULL,
   `domicilio` varchar(45) DEFAULT NULL,
   `paquete` int(11) NOT NULL,
-  `llamadas` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`llamadas`),
+  PRIMARY KEY (`id`),
   KEY `FK_cliente_to_paquete_idx` (`paquete`),
   CONSTRAINT `FK_cliente_to_paquete` FOREIGN KEY (`paquete`) REFERENCES `paquete` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +42,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Juan perez','622227753','Caller periferico',1,2),(2,'Juan perez','655644897','golo',1,1);
+INSERT INTO `cliente` VALUES (1,'Javier','6222277534','Periferico',1),(2,'Luis','6225456456','Las colinas',3),(3,'Gabriel Arce luna','6552277897','Empalme rifa',2),(4,'Fernando Gallego','6452277974','Piedron',1),(5,'Fernanda','8544005446','Marianas',1);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,14 +54,17 @@ DROP TABLE IF EXISTS `llamada`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `llamada` (
-  `id` int(11) NOT NULL,
-  `tipoLlamada` varchar(45) DEFAULT NULL,
-  `duracionMinutos` int(11) DEFAULT NULL,
-  `costo` decimal(6,2) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `receptor` varchar(45) DEFAULT NULL,
+  `tipoLlamada` varchar(45) DEFAULT NULL,
+  `duracionMinutos` varchar(45) DEFAULT NULL,
+  `costo` decimal(6,2) DEFAULT NULL,
   `fecha` varchar(45) DEFAULT NULL,
-  KEY `FK_llamadas_idx` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idReferencial` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_llamadas_idx` (`idReferencial`),
+  CONSTRAINT `FK_llamadas` FOREIGN KEY (`idReferencial`) REFERENCES `cliente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +73,7 @@ CREATE TABLE `llamada` (
 
 LOCK TABLES `llamada` WRITE;
 /*!40000 ALTER TABLE `llamada` DISABLE KEYS */;
-INSERT INTO `llamada` VALUES (1,'movil',8,100.00,'666444564','05/05/2005'),(2,'fijo',7,100.00,'646546545','21/01/2016'),(1,'movil',8,100.00,'465487978','31/01/2018');
+INSERT INTO `llamada` VALUES (1,'6222222222','Movil','1',1.00,'25/01/2016',1),(2,'6884644644','Fija','1',1.00,'25/01/2016',1),(3,'6222277894','MOVIL','1',1.00,'25/01/2016',1),(8,'6222277872','movil','50',60.00,'25/01/2016',2),(9,'6222222278','FIJA','40',30.00,'25/01/2016',1),(10,'6789844447','MOVIL','50',40.00,'25/01/2016',2),(11,'6546546546','FIJA','1',10.00,'25/01/2016',3),(13,'6546546588','fija','1',10.00,'20/05/2015',4),(14,'6546546599','movil','3',1.00,'25/01/2016',5),(15,'6546546577','movil','4',1.00,'25/01/2016',5);
 /*!40000 ALTER TABLE `llamada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,16 +100,16 @@ CREATE TABLE `paquete` (
 
 LOCK TABLES `paquete` WRITE;
 /*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-INSERT INTO `paquete` VALUES (1,'Paquete sin limites',100,10,500.00),(3,'Paquete paytowin',150,11,600.00);
+INSERT INTO `paquete` VALUES (1,'Paquete sin limites',100,10,500.00),(2,'Paquetealcance',100,8,400.00),(3,'Paquete paytowin',150,11,600.00);
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'xelmetbd'
+-- Dumping events for database 'xemletbd'
 --
 
 --
--- Dumping routines for database 'xelmetbd'
+-- Dumping routines for database 'xemletbd'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -117,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-04  9:59:06
+-- Dump completed on 2018-05-05 18:23:41
