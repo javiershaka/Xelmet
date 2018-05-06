@@ -1,4 +1,3 @@
-
 package mx.itson.xemlet.nucleo.entidades;
 
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ public class Llamada {
     private int duracionMinutos;
     private double costo;
     private String fecha;
+    private int idReferencial;
 
     /**
      * @return the id
@@ -101,6 +101,20 @@ public class Llamada {
      */
     public void setTipoLlamada(String tipoLlamada) {
         this.tipoLlamada = tipoLlamada;
+    }
+
+    /**
+     * @return the idReferencial
+     */
+    public int getIdReferencial() {
+        return idReferencial;
+    }
+
+    /**
+     * @param idReferencial the idReferencial to set
+     */
+    public void setIdReferencial(int idReferencial) {
+        this.idReferencial = idReferencial;
     }
 
    

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package mx.itson.xemlet.nucleo;
-import mx.itson.xemlet.persistencia.ControladorCliente;
-import mx.itson.xemlet.persistencia.ControladorLLamada;
-import mx.itson.xemlet.persistencia.ControladorPaquete;
-import mx.itson.xemlet.persistencia.ControladorCliente;
+import mx.itson.xemlet.persistencia.SessionCliente;
+import mx.itson.xemlet.persistencia.SessionLLamada;
+import mx.itson.xemlet.persistencia.SessionPaquete;
+import mx.itson.xemlet.persistencia.SessionCliente;
 /**
  *
  * @author javiershaka
@@ -19,10 +19,11 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //new ControladorPaquete().obtenerTodos().get(0);
-       //     new ControladorLLamada().obtenerTodos().get(0);
-           new ControladorCliente().obtenerTodos();
-           new ControladorCliente().obtenerLlamadas(1);
+       // new SessionPaquete().obtenerTodos().size();
+          // new SessionLLamada().obtenerTodos();
+          new SessionCliente().obtenerTodos(1);
+         //new SessionCliente().obtenerLlamadas(0);
+   
        
         
     }

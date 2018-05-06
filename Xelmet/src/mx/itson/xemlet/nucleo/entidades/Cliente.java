@@ -26,6 +26,7 @@ public class Cliente {
     private String domicilio;
     private Paquete paquete;
     private List<Llamada> llamadas;
+    
     /**
      * @return the id
      */
@@ -105,14 +106,11 @@ public class Cliente {
      * @return the llamadas
      */
      @OneToMany
-     @JoinTable(
-            name = "cliente",
-            joinColumns = {
-                @JoinColumn(name = "llamadas")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "id")}
-    )
-    //@JoinColumn(name = "llamadas")
+     @JoinColumn(name = "idReferencial")
+            
+   
+  
+     
     public List<Llamada> getLlamadas() {
         return llamadas;
     }
