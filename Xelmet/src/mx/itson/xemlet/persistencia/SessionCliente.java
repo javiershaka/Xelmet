@@ -20,11 +20,8 @@ import org.hibernate.Session;
  */
 public class SessionCliente {
 
-
-   
-  
     public List<Cliente> obtenerTodos(int pos) {
-       
+
         List<Cliente> clientes = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -34,15 +31,54 @@ public class SessionCliente {
             clientes = session.createQuery(criteria).getResultList();
             clientes.size();
             clientes.get(pos).getLlamadas().size();
-   
-          
-            
+
             session.close();
         } catch (Exception ex) {
             System.out.println("Ocurió un error al intentar obtener registros");
         }
         return clientes;
     }
+
+    public void AgregarCliente(Cliente client) {
+
+        try {
+
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
+            criteria.from(Cliente.class);
+
+            //
+            session.beginTransaction();
+            session.save(client);
+            session.getTransaction().commit();
+            session.close();
+            //
+
+            session.close();
+        } catch (Exception ex) {
+            System.out.println("Ocurió un error al intentar obtener registros");
+        }
+
+    }
+
+    public void EliminarCliente(int pos) {
+         Cliente p = new Cliente();
+            try {
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+
+                p = (Cliente) session.get(Cliente.class, obtenerTodos(pos).get(pos).getId());
+                p.getLlamadas().clear();
+                session.delete(p);
+            session.delete(p);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            System.out.println("Ocurrió un error al intentar obtener registros");
+        }
+    }
+
 //     public List<Llamada> obtenerLlamadas(int pos) {
 //        List<Llamada> canciones = new ArrayList<>();
 //        try {
@@ -63,6 +99,4 @@ public class SessionCliente {
 //        }
 //        return canciones;
 //    }
-
 }
-

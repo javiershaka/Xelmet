@@ -10,7 +10,7 @@ public class Llamada {
     private String receptor;
     private String tipoLlamada;
     private int duracionMinutos;
-    private double costo;
+  
     private String fecha;
     private int idReferencial;
 
@@ -61,19 +61,7 @@ public class Llamada {
         this.duracionMinutos = duracionMinutos;
     }
 
-    /**
-     * @return the costo
-     */
-    public double getCosto() {
-        return costo;
-    }
-
-    /**
-     * @param costo the costo to set
-     */
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
+   
 
     /**
      * @return the fecha

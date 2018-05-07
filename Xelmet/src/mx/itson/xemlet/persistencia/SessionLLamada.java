@@ -31,5 +31,30 @@ public class SessionLLamada {
         }
         return llamadas;
     }
+     
+     
+    public void AgregarLlamada(Llamada llamada){
+        
+        try {
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Llamada> criteria = builder.createQuery(Llamada.class);
+            criteria.from(Llamada.class);
+           
+            //
+            
+            session.beginTransaction();
+            session.save(llamada);
+            session.getTransaction().commit();
+            session.close();
+            //
+          
+            
+            session.close();
+        } catch (Exception ex) {
+            System.out.println("Ocurió un error al intentar obtener registros");
+        }
+    }
     
 }

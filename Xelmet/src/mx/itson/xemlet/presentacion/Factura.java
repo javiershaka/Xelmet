@@ -5,7 +5,7 @@
  */
 package mx.itson.xemlet.presentacion;
 
-import mx.itson.xemlet.nucleo.controlador.controladorFactura;
+import mx.itson.xemlet.nucleo.controlador.controladorFrameFactura;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Factura extends javax.swing.JFrame {
     public Factura() {
         initComponents();
         this.setLocationRelativeTo(null);
-        new controladorFactura().llenarFrame();
+        new controladorFrameFactura().llenarFrame();
     }
 
     /**

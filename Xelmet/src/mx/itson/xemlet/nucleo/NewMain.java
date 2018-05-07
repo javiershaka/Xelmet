@@ -21,7 +21,6 @@ public class NewMain {
         // TODO code application logic here
        // new SessionPaquete().obtenerTodos().size();
           // new SessionLLamada().obtenerTodos();
-          new SessionCliente().obtenerTodos(1);
          //new SessionCliente().obtenerLlamadas(0);
    
        

@@ -1,4 +1,3 @@
-
 package mx.itson.xemlet.nucleo.entidades;
 
 import javax.persistence.Entity;
@@ -7,11 +6,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Paquete {
+
     private int id;
     private String nombre;
     private int minutosACelular;
     private int llamadasFijas;
     private double precio;
+    private int costoAdicionalPorLlamada;
+    private int costoAdicionalPorMinitos;
 
     /**
      * @return the id
@@ -83,5 +85,33 @@ public class Paquete {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the costoAdicionalPorLlamada
+     */
+    public int getCostoAdicionalPorLlamada() {
+        return costoAdicionalPorLlamada;
+    }
+
+    /**
+     * @param costoAdicionalPorLlamada the costoAdicionalPorLlamada to set
+     */
+    public void setCostoAdicionalPorLlamada(int costoAdicionalPorLlamada) {
+        this.costoAdicionalPorLlamada = costoAdicionalPorLlamada;
+    }
+
+    /**
+     * @return the costoAdicionalPorMinitos
+     */
+    public int getCostoAdicionalPorMinitos() {
+        return costoAdicionalPorMinitos;
+    }
+
+    /**
+     * @param costoAdicionalPorMinitos the costoAdicionalPorMinitos to set
+     */
+    public void setCostoAdicionalPorMinitos(int costoAdicionalPorMinitos) {
+        this.costoAdicionalPorMinitos = costoAdicionalPorMinitos;
     }
 }
