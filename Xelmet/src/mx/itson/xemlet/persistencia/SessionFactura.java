@@ -34,6 +34,22 @@ public class SessionFactura {
         }
         return paquetes;
     }
+    public void AgregarFactura(Factura f){
+        try {
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+           
+            session.save(f);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            System.out.println("Ocurrió un error al intentar obtener registros");
+        }
+        
+        
+        
+    }
     
     
     

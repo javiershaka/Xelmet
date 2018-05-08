@@ -6,6 +6,7 @@
 package mx.itson.xemlet.nucleo.controlador;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.xemlet.persistencia.SessionCliente;
+import mx.itson.xemlet.persistencia.SessionFactura;
 import mx.itson.xemlet.persistencia.SessionPaquete;
 import mx.itson.xemlet.presentacion.Principal;
 
@@ -41,6 +42,19 @@ public class ControladorFramePrincipal {
             
         }
         Principal.tbPaquetes.setModel(tablaPaquetes);
+        
+    }
+    
+    public void llenarTablaFramePrincipalFactura(){
+        SessionFactura sesionFactura = new SessionFactura();
+        DefaultTableModel tablaFactura = (DefaultTableModel) Principal.tbFactura.getModel();
+        
+        tablaFactura.setRowCount(0);
+        for(int a = 0; a < sesionFactura.obtenerTodos().size(); a ++){
+            tablaFactura.addRow(new Object[]{""+sesionFactura.obtenerTodos().get(a).getIdCliente(), ""+sesionFactura.obtenerTodos().get(a).getLlamadasRealizadas(), ""+sesionFactura.obtenerTodos().get(a).getFecha(),""+sesionFactura.obtenerTodos().get(a).getTotal()});
+            
+        }
+        Principal.tbFactura.setModel(tablaFactura);
         
     }
     

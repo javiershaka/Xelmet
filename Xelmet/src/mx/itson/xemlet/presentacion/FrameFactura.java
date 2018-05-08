@@ -19,7 +19,8 @@ public class FrameFactura extends javax.swing.JDialog {
     public FrameFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        cbMes.setVisible(false);
+        txtNombre.setText(""+Registro.txtNombreCliente.getText());
+      
     }
 
     /**
@@ -177,7 +178,15 @@ public class FrameFactura extends javax.swing.JDialog {
 
     private void btnVGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVGActionPerformed
         // TODO add your handling code here:
-        
+       
+        if(btnVG.getText().equalsIgnoreCase("Verificar")){
+             new ControladorFactura().VerificarFacturar();
+        }
+        if(btnVG.getText().equalsIgnoreCase("Facturar")){
+            new ControladorFactura().AgregarFactura();
+            System.out.println("asd");
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnVGActionPerformed
 
     private void cbMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMesItemStateChanged
@@ -229,7 +238,7 @@ public class FrameFactura extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVG;
+    public static javax.swing.JButton btnVG;
     public static javax.swing.JComboBox<String> cbMes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

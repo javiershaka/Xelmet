@@ -48,7 +48,6 @@ public class ControladorFactura {
             }
 
             llamadasRealizadas = llamadas + llamadasCelular;
-            FrameFactura.txtNombre.setText("" + Registro.txtNombreCliente.getText());
             FrameFactura.txtLlamadasFijas.setText("" + llamadas);
             FrameFactura.txtMinutosCelular.setText("" + minutos);
             FrameFactura.txtLlamadasRealizadas.setText("" + llamadasRealizadas);
@@ -69,13 +68,28 @@ public class ControladorFactura {
             FrameFactura.txtCostoPaquete.setText(""+cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getPrecio());
             FrameFactura.txtCargosAdicionales.setText(""+cargo);
             FrameFactura.txtTotal.setText(""+total);
+            if(llamadasRealizadas>0 ){
+                FrameFactura.btnVG.setText("Facturar");
+            }
+            else{
+                System.out.println("no se encontro el registro");
+            }
+           
         }
 
     }
     public void AgregarFactura(){
         Factura factura = new Factura();
-        
-        
+        factura.setCargosAdicionales(Double.parseDouble(""+FrameFactura.txtCargosAdicionales.getText()));
+        factura.setCostoPaquete(Double.parseDouble(""+FrameFactura.txtCostoPaquete.getText()));
+        factura.setFecha(""+FrameFactura.cbMes.getSelectedItem().toString()+"/"+FrameFactura.txtAño.getText());
+        factura.setIdCliente(Integer.parseInt(""+Registro.txtRegistroCliente.getText()));
+        factura.setLlamadasFijas(Integer.parseInt(""+FrameFactura.txtLlamadasFijas.getText()));
+        factura.setLlamadasMovil(Integer.parseInt(""+FrameFactura.txtMinutosCelular.getText()));
+        factura.setLlamadasRealizadas(Integer.parseInt(""+FrameFactura.txtLlamadasRealizadas.getText()));
+        factura.setNombre(""+Registro.txtNombreCliente.getText());
+        factura.setTotal(Double.parseDouble(""+FrameFactura.txtTotal.getText()));
+        new SessionFactura().AgregarFactura(factura);
     }
 
 }

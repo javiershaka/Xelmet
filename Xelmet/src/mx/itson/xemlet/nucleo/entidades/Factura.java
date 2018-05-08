@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Factura {
     private int id;
     private int idCliente;
-    private int nombre;
+    private String nombre;
     private String fecha;
     private int llamadasMovil;
     private int llamadasFijas;
@@ -56,19 +56,7 @@ public class Factura {
         this.idCliente = idCliente;
     }
 
-    /**
-     * @return the nombre
-     */
-    public int getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
-    }
+   
 
     /**
      * @return the fecha
@@ -166,6 +154,20 @@ public class Factura {
      */
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     
