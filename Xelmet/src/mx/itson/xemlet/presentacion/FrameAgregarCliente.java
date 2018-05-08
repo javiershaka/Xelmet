@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package mx.itson.xemlet.presentacion;
+
+import java.awt.Color;
 import mx.itson.xemlet.persistencia.SessionPaquete;
 import mx.itson.xemlet.nucleo.controlador.ControladorCliente;
+import mx.itson.xemlet.nucleo.controlador.ControladorFramePrincipal;
+
 /**
  *
  * @author javiershaka
@@ -15,14 +19,13 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
     /**
      * Creates new form FrameAgregarCliente
      */
-    
-    
     public FrameAgregarCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
         SessionPaquete paquetes = new SessionPaquete();
         cmbxPaquete.removeAllItems();
-        for(int o = 0; o < paquetes.obtenerTodos().size();o++){
-            cmbxPaquete.addItem(""+paquetes.obtenerTodos().get(o).getNombre());
+        for (int o = 0; o < paquetes.obtenerTodos().size(); o++) {
+            cmbxPaquete.addItem("" + paquetes.obtenerTodos().get(o).getNombre());
         }
     }
 
@@ -41,7 +44,7 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtNumeroTelefonico = new javax.swing.JFormattedTextField();
         txtDomicilio = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         cmbxPaquete = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -54,10 +57,10 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
 
         jLabel3.setText("Domicilio:");
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Aceptar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
@@ -79,7 +82,7 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +113,7 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnAgregar)
                     .addComponent(jButton2))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -118,11 +121,27 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        new ControladorCliente().AgregarCliente();
-        this.hide();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (txtDomicilio.getText().isEmpty()) {
+            txtDomicilio.setBackground(Color.red);
+        }
+        if (txtNombre.getText().isEmpty()) {
+            txtNombre.setBackground(Color.red);
+        }
+        if (txtNumeroTelefonico.getText().isEmpty()) {
+            txtNumeroTelefonico.setBackground(Color.red);
+        }
+
+        if (!txtDomicilio.getText().isEmpty() && !txtNombre.getText().isEmpty() && !txtNumeroTelefonico.getText().isEmpty()) {
+            new ControladorCliente().AgregarOrModificarCliente();
+            new ControladorFramePrincipal().llenarTablaFramePrincipalClientes();
+            this.setVisible(false);
+        } else {
+            System.out.println("asd");
+        }
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,8 +179,8 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btnAgregar;
     public static javax.swing.JComboBox<String> cmbxPaquete;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

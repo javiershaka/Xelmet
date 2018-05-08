@@ -32,6 +32,20 @@ public class Paquete {
     }
 
     /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
      * @return the minutosACelular
      */
     public int getMinutosACelular() {
@@ -74,20 +88,6 @@ public class Paquete {
     }
 
     /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
      * @return the costoAdicionalPorLlamada
      */
     public int getCostoAdicionalPorLlamada() {
@@ -114,4 +114,7 @@ public class Paquete {
     public void setCostoAdicionalPorMinitos(int costoAdicionalPorMinitos) {
         this.costoAdicionalPorMinitos = costoAdicionalPorMinitos;
     }
+
+
+    
 }

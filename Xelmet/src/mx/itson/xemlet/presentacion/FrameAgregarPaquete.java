@@ -5,6 +5,8 @@
  */
 package mx.itson.xemlet.presentacion;
 
+import java.awt.Color;
+import mx.itson.xemlet.nucleo.controlador.ControladorFramePrincipal;
 import mx.itson.xemlet.nucleo.controlador.ControladorPaquete;
 
 /**
@@ -19,6 +21,7 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
     public FrameAgregarPaquete(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +40,7 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txtMinutosCelular = new javax.swing.JFormattedTextField();
         txtMinutosAdicionales = new javax.swing.JFormattedTextField();
@@ -59,10 +62,10 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
 
         jLabel6.setText("Precio:");
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Aceptar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
@@ -94,7 +97,7 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
@@ -134,7 +137,7 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnAgregar)
                     .addComponent(jButton2))
                 .addGap(21, 21, 21))
         );
@@ -142,13 +145,36 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        new ControladorPaquete().AgregarPaquete();
-        this.setVisible(false);
-        
-      
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (txtLlamadasAdicionales.getText().isEmpty()) {
+            txtLlamadasAdicionales.setBackground(Color.red);
+        }
+        if (txtLlamadasFijas.getText().isEmpty()) {
+            txtLlamadasFijas.setBackground(Color.red);
+        }
+        if (txtMinutosAdicionales.getText().isEmpty()) {
+            txtMinutosAdicionales.setBackground(Color.red);
+        }
+        if (txtMinutosCelular.getText().isEmpty()) {
+            txtMinutosCelular.setBackground(Color.red);
+        }
+        if (txtNombre.getText().isEmpty()) {
+            txtNombre.setBackground(Color.red);
+        }
+        if (txtPrecio.getText().isEmpty()) {
+            txtPrecio.setBackground(Color.red);
+        }
+        if (!txtLlamadasAdicionales.getText().isEmpty() && !txtLlamadasFijas.getText().isEmpty() && !txtMinutosAdicionales.getText().isEmpty() && !txtMinutosCelular.getText().isEmpty() && !txtNombre.getText().isEmpty() && !txtPrecio.getText().isEmpty()) {
+            new ControladorPaquete().AgregarOModificarValidacion();
+            new ControladorFramePrincipal().llenarTablaFramePrincipalPaquetes();
+            this.setVisible(false);
+        } else {
+
+        }
+
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,7 +220,7 @@ public class FrameAgregarPaquete extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton jButton1;
+    public static javax.swing.JButton btnAgregar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

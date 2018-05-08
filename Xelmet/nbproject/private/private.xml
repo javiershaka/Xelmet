@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
         <file>
             <url>src/mx/itson/xemlet/nucleo/entidades/NewMain.java</url>
             <bookmark id="1">
@@ -12,10 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/nucleo/NewMain.java</file>
-            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/nucleo/controlador/controladorFactura.java</file>
-            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/persistencia/SessionCliente.java</file>
+            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/presentacion/FrameAgregarCliente.java</file>
+            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/presentacion/FrameAgregarPaquete.java</file>
+            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/presentacion/FrameAgregarLlamada.java</file>
+            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/presentacion/Principal.java</file>
             <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/presentacion/Factura.java</file>
+            <file>file:/C:/Users/Propietario/Downloads/Xemlet-master/Xelmet/src/mx/itson/xemlet/nucleo/controlador/ControladorCliente.java</file>
         </group>
     </open-files>
 </project-private>

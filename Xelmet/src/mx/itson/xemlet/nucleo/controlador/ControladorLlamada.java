@@ -7,6 +7,7 @@ package mx.itson.xemlet.nucleo.controlador;
 import mx.itson.xemlet.persistencia.SessionCliente;
 import mx.itson.xemlet.persistencia.SessionLLamada;
 import mx.itson.xemlet.nucleo.entidades.Llamada;
+import mx.itson.xemlet.nucleo.entidades.Paquete;
 import mx.itson.xemlet.presentacion.Principal;
 import mx.itson.xemlet.presentacion.FrameAgregarLlamada;
 
@@ -21,7 +22,7 @@ public class ControladorLlamada {
         Llamada llamada = new Llamada();
         llamada.setIdReferencial(new SessionCliente().obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getId());
         llamada.setDuracionMinutos(Integer.parseInt(""+FrameAgregarLlamada.txtDuracion.getText()));
-        llamada.setFecha(""+FrameAgregarLlamada.txtFecha.getText());
+        llamada.setFecha(""+FrameAgregarLlamada.cbDias.getSelectedItem()+"/"+FrameAgregarLlamada.cbMes.getSelectedItem()+"/"+FrameAgregarLlamada.txtAño.getText());
         llamada.setReceptor(""+FrameAgregarLlamada.txtReceptor.getText());
         llamada.setTipoLlamada(""+FrameAgregarLlamada.comboboxTipo.getSelectedItem());
         
@@ -29,9 +30,8 @@ public class ControladorLlamada {
         new SessionLLamada().AgregarLlamada(llamada);
     
         
-        
-        
-        
     }
+    
+    
     
 }

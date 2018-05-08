@@ -78,6 +78,22 @@ public class SessionCliente {
             System.out.println("Ocurrió un error al intentar obtener registros");
         }
     }
+    
+    
+    public void modificarCliente(Cliente c){
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            
+            session.update(c);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            System.out.println("Ocurrió un error al intentar obtener registros");
+        }
+        
+    }
 
 //     public List<Llamada> obtenerLlamadas(int pos) {
 //        List<Llamada> canciones = new ArrayList<>();

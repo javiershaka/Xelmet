@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import mx.itson.xemlet.nucleo.entidades.Cliente;
+import mx.itson.xemlet.nucleo.entidades.Paquete;
 import mx.itson.xemlet.nucleo.entidades.Paquete;
 import mx.itson.xemlet.presentacion.FrameAgregarPaquete;
+import mx.itson.xemlet.presentacion.Principal;
 import org.hibernate.Session;
 /**
  *
@@ -46,6 +47,20 @@ public class SessionPaquete {
         
         
         
+    }
+    
+    public void ModificarPaquete(Paquete p){
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            
+            session.update(p);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            System.out.println("Ocurrió un error al intentar obtener registros");
+        }
     }
     
 }

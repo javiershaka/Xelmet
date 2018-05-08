@@ -25,6 +25,7 @@
         <mapping class="mx.itson.xemlet.nucleo.entidades.Llamada"/>
         <mapping class="mx.itson.xemlet.nucleo.entidades.Paquete"/>
         <mapping class="mx.itson.xemlet.nucleo.entidades.Cliente"/>
+        <mapping class="mx.itson.xemlet.nucleo.entidades.Factura"/>
         
         
        
