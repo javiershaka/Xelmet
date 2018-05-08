@@ -178,15 +178,16 @@ public class FrameFactura extends javax.swing.JDialog {
 
     private void btnVGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVGActionPerformed
         // TODO add your handling code here:
-       
-        if(btnVG.getText().equalsIgnoreCase("Verificar")){
-             new ControladorFactura().VerificarFacturar();
-        }
-        if(btnVG.getText().equalsIgnoreCase("Facturar")){
+       if(btnVG.getText().equalsIgnoreCase("Facturar")){
             new ControladorFactura().AgregarFactura();
             System.out.println("asd");
             this.setVisible(false);
         }
+        if(btnVG.getText().equalsIgnoreCase("Verificar")){
+             new ControladorFactura().VerificarFacturar();
+        }
+        
+        
     }//GEN-LAST:event_btnVGActionPerformed
 
     private void cbMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMesItemStateChanged

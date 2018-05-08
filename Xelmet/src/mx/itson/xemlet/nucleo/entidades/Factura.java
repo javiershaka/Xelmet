@@ -8,6 +8,9 @@ package mx.itson.xemlet.nucleo.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -29,8 +32,10 @@ public class Factura {
     /**
      * @return the id
      */
-    @Id
+        @Id
     @GeneratedValue
+  
+    
     public int getId() {
         return id;
     }
@@ -45,6 +50,7 @@ public class Factura {
     /**
      * @return the idCliente
      */
+  
     public int getIdCliente() {
         return idCliente;
     }
@@ -56,7 +62,19 @@ public class Factura {
         this.idCliente = idCliente;
     }
 
-   
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     /**
      * @return the fecha
@@ -157,20 +175,9 @@ public class Factura {
     }
 
     /**
-     * @return the nombre
+     * @return the id
      */
-    public String getNombre() {
-        return nombre;
-    }
 
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    
     
     
     
