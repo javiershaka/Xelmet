@@ -12,6 +12,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import mx.itson.xemlet.nucleo.entidades.Cliente;
 import mx.itson.xemlet.nucleo.entidades.Llamada;
+import mx.itson.xemlet.presentacion.FrameAgregarCliente;
+import mx.itson.xemlet.presentacion.Principal;
 import org.hibernate.Session;
 
 /**
@@ -19,7 +21,11 @@ import org.hibernate.Session;
  * @author javiershaka
  */
 public class SessionCliente {
-
+/**
+ * metodo para obtener todos los datos de cliente
+ * @param pos devuelve la posicion de la tabla que se seleciona
+ * @return 
+ */
     public List<Cliente> obtenerTodos(int pos) {
 
         List<Cliente> clientes = new ArrayList<>();
@@ -29,6 +35,7 @@ public class SessionCliente {
             CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
             criteria.from(Cliente.class);
             clientes = session.createQuery(criteria).getResultList();
+            // se hace clientes.size() y clientes get llamadas para no añadir la propuedad lazy para que no se corte el reccorrido
             clientes.size();
             clientes.get(pos).getLlamadas().size();
 
@@ -38,7 +45,10 @@ public class SessionCliente {
         }
         return clientes;
     }
-
+/**
+ * metodo para agregar cliente en base de tados
+ * @param client recive un parametro de objeto cliente para agregarlo
+ */
     public void AgregarCliente(Cliente client) {
 
         try {
@@ -61,16 +71,19 @@ public class SessionCliente {
         }
 
     }
-
+    /**
+     * metodo para eliminar cliente
+     * @param pos recive el parametro de la posicion de la tabla
+     */
     public void EliminarCliente(int pos) {
-         Cliente p = new Cliente();
-            try {
-                Session session = HibernateUtil.getSessionFactory().openSession();
-                session.beginTransaction();
+        Cliente p = new Cliente();
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
 
-                p = (Cliente) session.get(Cliente.class, obtenerTodos(pos).get(pos).getId());
-                p.getLlamadas().clear();
-                session.delete(p);
+            p = (Cliente) session.get(Cliente.class, obtenerTodos(pos).get(pos).getId());
+            p.getLlamadas().clear();
+            session.delete(p);
             session.delete(p);
             session.getTransaction().commit();
             session.close();
@@ -78,41 +91,28 @@ public class SessionCliente {
             System.out.println("Ocurrió un error al intentar obtener registros");
         }
     }
-    
-    
-    public void modificarCliente(Cliente c){
+    /**
+     * metodo para modificar cliente 
+     * @param c recive un parametro de objeto cliente para modificarlo
+     */
+    public void modificarCliente(Cliente c) {
         try {
+            Cliente client;
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
-            
+             c = (Cliente) session.get(Cliente.class, obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getId());
+            c.setDomicilio("" + FrameAgregarCliente.txtDomicilio.getText());
+            c.setNombre("" + FrameAgregarCliente.txtNombre.getText());
+            c.setNumeroTelefonico("" + FrameAgregarCliente.txtNumeroTelefonico.getText());
+            c.setPaquete(new SessionPaquete().obtenerTodos().get(FrameAgregarCliente.cmbxPaquete.getSelectedIndex()));
             session.update(c);
             session.getTransaction().commit();
             session.close();
         } catch (Exception ex) {
             System.out.println("Ocurrió un error al intentar obtener registros");
         }
-        
+
     }
 
-//     public List<Llamada> obtenerLlamadas(int pos) {
-//        List<Llamada> canciones = new ArrayList<>();
-//        try {
-//            Session session = HibernateUtil.getSessionFactory().openSession();
-//            CriteriaBuilder builder = session.getCriteriaBuilder();
-//            CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
-//            criteria.from(Cliente.class);
-//            canciones = (List<Llamada>) session.createQuery(criteria).getResultList().get(pos).getLlamadas();
-//
-//            //hace una accion para que de tiempo al procesamie  nto
-//            System.out.println(""+canciones.size());
-//            System.out.println(""+canciones.get(0).getId());
-//            //System.out.println(""+canciones.get(1).getId());
-//            session.close();
-//
-//        } catch (Exception ex) {
-//            System.out.println("Ocurió un error al intentar obtener registros de las canciones: " + ex.getMessage());
-//        }
-//        return canciones;
-//    }
+
 }

@@ -16,11 +16,17 @@ import mx.itson.xemlet.persistencia.SessionCliente;
 public class ControladorFrameRegistro {
     //cambia la variable para acceder el diferente tipo de cliente del  0 al 4 por lo pronto
     
-    
+    /**
+     * este metodo solo llena el frame registro con los datos del cliente
+     */
     public  void llenarFrame (){
+        //variable para que acumle el costo por llamada
         int costLlamada = 0;
+        //variable para que acumule el costo por minuto
         int costMinutos = 0;
+        //contador para los minutos
         int contMinutos= 0;
+        //variable para que almacene la posicion de a tabla
         int var = Principal.tbClientes.getSelectedRow();
         DefaultTableModel tablaFijas = (DefaultTableModel) Registro.tbLlamadasFijas.getModel();
         DefaultTableModel tablaMovil = (DefaultTableModel) Registro.tbLlamadasMovil.getModel();
@@ -36,11 +42,14 @@ public class ControladorFrameRegistro {
         Registro.txtNombrePaquete.setText(""+sessionclient.obtenerTodos(var).get(var).getPaquete().getNombre());
         Registro.txtPrecio.setText(""+sessionclient.obtenerTodos(var).get(var).getPaquete().getPrecio());
         Registro.txtRegistroCliente.setText(""+sessionclient.obtenerTodos(var).get(var).getId());
+        //for para llamadas
         for(int i = 0 ; i < sessionclient.obtenerTodos(var).get(var).getLlamadas().size(); i++){
+            //condicion para llamadas fijas
             if(sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getTipoLlamada().equalsIgnoreCase("FIJA")){
                 tablaFijas.addRow(new Object[]{""+sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getReceptor(),"" +sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getFecha(), ""+sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getDuracionMinutos()});
                 
             }
+            //condicion para llamadas moviles
             if(sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getTipoLlamada().equalsIgnoreCase("Movil")){
                 tablaMovil.addRow(new Object[]{""+sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getReceptor(),"" +sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getFecha(), ""+sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getDuracionMinutos()});
                 contMinutos += sessionclient.obtenerTodos(var).get(var).getLlamadas().get(i).getDuracionMinutos();
@@ -52,6 +61,7 @@ public class ControladorFrameRegistro {
         
         costLlamada =tablaFijas.getRowCount()- sessionclient.obtenerTodos(var).get(var).getPaquete().getLlamadasFijas();
         costMinutos = contMinutos - sessionclient.obtenerTodos(var).get(var).getPaquete().getCostoAdicionalPorMinitos();
+        //condiciones para cobros adicionales-
         if(costLlamada > 0){
             costLlamada = costLlamada * sessionclient.obtenerTodos(var).get(var).getPaquete().getCostoAdicionalPorLlamada();
             Registro.txtCostoAdicionalLlamada.setText(""+costLlamada);
@@ -60,6 +70,7 @@ public class ControladorFrameRegistro {
             Registro.txtCostoAdicionalLlamada.setText("0");
             
         }
+        
         if(costMinutos > 0){
             costMinutos = costMinutos * sessionclient.obtenerTodos(var).get(var).getPaquete().getCostoAdicionalPorMinitos();
             Registro.txtCostoAdicionalMinutos.setText(""+costMinutos);

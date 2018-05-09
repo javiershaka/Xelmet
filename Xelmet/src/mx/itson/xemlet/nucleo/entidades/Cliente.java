@@ -14,8 +14,8 @@ import javax.persistence.OneToOne;
 
 
 /**
- *
- * @author fcoav
+ * 
+ * @author javiershaka
  */
 @Entity
 public class Cliente {
@@ -106,6 +106,7 @@ public class Cliente {
      * @return the llamadas
      */
      @OneToMany
+    
      @JoinColumn(name = "idReferencial")
             
    

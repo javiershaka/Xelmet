@@ -15,7 +15,9 @@ import mx.itson.xemlet.presentacion.Principal;
  * @author javiershaka
  */
 public class ControladorPaquete {
-
+/**
+ * metodo para agregar paquete
+ */
     public void AgregarPaquete() {
         Paquete p = new Paquete();
         p.setNombre("" + FrameAgregarPaquete.txtNombre.getText());
@@ -32,7 +34,9 @@ public class ControladorPaquete {
     public void EliminarPaquete() {
 
     }
-
+    /** 
+     * metodo para modificar paquete
+     */
     public void modificarPaquete() {
         Paquete p = new Paquete();
         p.setId(new SessionPaquete().obtenerTodos().get(Principal.tbPaquetes.getSelectedRow()).getId());
@@ -47,7 +51,9 @@ public class ControladorPaquete {
         new SessionPaquete().ModificarPaquete(p);
 
     }
-
+    /**
+     * metodo para validar que metodo se va ejecutar
+     */
     public void AgregarOModificarValidacion() {
         if (FrameAgregarPaquete.btnAgregar.getText().equalsIgnoreCase("Aceptar")) {
 

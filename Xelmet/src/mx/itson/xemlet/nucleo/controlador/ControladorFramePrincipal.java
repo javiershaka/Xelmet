@@ -15,6 +15,9 @@ import mx.itson.xemlet.presentacion.Principal;
  * @author javiershaka
  */
 public class ControladorFramePrincipal {
+    /**
+     * en este metodo se llena la tabla principal de clientes
+     */
     
     public void llenarTablaFramePrincipalClientes(){
         
@@ -31,7 +34,9 @@ public class ControladorFramePrincipal {
         
         
     }
-    
+    /**
+     * este metodo sirve para llenar la tabla paquetes del menu principal
+     */
     public void llenarTablaFramePrincipalPaquetes(){
         SessionPaquete sesionPaquete = new SessionPaquete();
         DefaultTableModel tablaPaquetes = (DefaultTableModel) Principal.tbPaquetes.getModel();
@@ -44,7 +49,9 @@ public class ControladorFramePrincipal {
         Principal.tbPaquetes.setModel(tablaPaquetes);
         
     }
-    
+    /**
+     * en este metodo se llana la tabla factura del menu principal
+     */
     public void llenarTablaFramePrincipalFactura(){
         SessionFactura sesionFactura = new SessionFactura();
         DefaultTableModel tablaFactura = (DefaultTableModel) Principal.tbFactura.getModel();

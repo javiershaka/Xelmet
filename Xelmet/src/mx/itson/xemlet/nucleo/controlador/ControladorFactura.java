@@ -5,6 +5,7 @@
  */
 package mx.itson.xemlet.nucleo.controlador;
 
+import javax.swing.JOptionPane;
 import mx.itson.xemlet.persistencia.SessionFactura;
 import mx.itson.xemlet.persistencia.SessionCliente;
 import mx.itson.xemlet.presentacion.Principal;
@@ -16,43 +17,58 @@ import mx.itson.xemlet.nucleo.entidades.Factura;
  * @author javiershaka
  */
 public class ControladorFactura {
-
+    /**
+     * en este metodo se verifica que los datos de la factura esten correctos si no entonces no se ejecutara la factura
+     */
     public void VerificarFacturar() {
+        /**
+         * en esta validacion se valida los espacios obtenidos no esten vacios
+         */
         if (!FrameFactura.txtAño.getText().isEmpty() && FrameFactura.cbMes.getSelectedIndex() > 0) {
-
+            //se inicia session cliente 
             SessionCliente cliente = new SessionCliente();
+            //variable para que acumule los minutos
             int minutos = 0;
+            //variable para que acumule las llamadas fijas
             int llamadas = 0;
+            //variable para que acumule las llamadas de celular
             int llamadasCelular = 0;
+            //variable para que acumule las llamadas realizadas en total
             int llamadasRealizadas;
+            //variable para que saque el costo adicional para la llamad apor minuto
             int AdicionalCelular = 0;
+            //variable para que acumule el costo adicional de las llamadas fijas
             int AdicionalLlamadas = 0;
+            //variable para que acumule el cargo 
             double cargo = 0;
+            //variable que acumula el total
             double total;
+            //string para que acumule el mes y el año
             String fecha = "" + FrameFactura.cbMes.getSelectedItem().toString().toUpperCase() + "/" + FrameFactura.txtAño.getText().toUpperCase();
-            System.out.println("" + fecha);
-
+            //for para las llamadas
             for (int var = 0; var < Integer.parseInt("" + Registro.txtLlamadasRealizadas.getText()); var++) {
-
+                //condicion para clientes llamadadas que esten en la fecha
                 if (cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getLlamadas().get(var).getFecha().toUpperCase().contains(fecha.toUpperCase())) {
+                    //condicion para las llamadas fijas
                     if (cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getLlamadas().get(var).getTipoLlamada().equalsIgnoreCase("FIJA")) {
                         llamadas += 1;
                     }
+                    //condicion para llamadas movil
                     if (cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getLlamadas().get(var).getTipoLlamada().equalsIgnoreCase("Movil")) {
-                        System.out.println("paso 2");
                         minutos += cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getLlamadas().get(var).getDuracionMinutos();
                         llamadasCelular += 1;
                     }
 
                 }
             }
-
+            //metodos de sumas y restas
             llamadasRealizadas = llamadas + llamadasCelular;
             FrameFactura.txtLlamadasFijas.setText("" + llamadas);
             FrameFactura.txtMinutosCelular.setText("" + minutos);
             FrameFactura.txtLlamadasRealizadas.setText("" + llamadasRealizadas);
             llamadas = llamadas - cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getLlamadasFijas();
             minutos = minutos - cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getMinutosACelular();
+            //condiciones para el cobro adicional
             if (llamadas > 0) {
                 AdicionalLlamadas = llamadas * cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getCostoAdicionalPorLlamada();
             } else {
@@ -65,19 +81,24 @@ public class ControladorFactura {
             }
             cargo = AdicionalCelular + AdicionalLlamadas;
             total = cargo + cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getPrecio();
+                //se lleman el frame factura
             FrameFactura.txtCostoPaquete.setText(""+cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getPrecio());
             FrameFactura.txtCargosAdicionales.setText(""+cargo);
             FrameFactura.txtTotal.setText(""+total);
+            //condicion para facturar
             if(llamadasRealizadas>0 ){
                 FrameFactura.btnVG.setText("Facturar");
             }
             else{
-                System.out.println("no se encontro el registro");
+                JOptionPane.showMessageDialog(null,"La fecha que ingreso no coincide con algun registro","Aviso" ,JOptionPane.INFORMATION_MESSAGE);
             }
            
         }
 
     }
+    /**
+     * Metodo donde se agrega una factura 
+     */
     public void AgregarFactura(){
         Factura factura = new Factura();
         factura.setCargosAdicionales(Double.parseDouble(""+FrameFactura.txtCargosAdicionales.getText()));

@@ -14,6 +14,9 @@ import mx.itson.xemlet.presentacion.FrameDetalleFactura;
  * @author javiershaka
  */
 public class ControladorFrameDetalleFactura {
+    /**
+     * en este metodo nomas se llena el frame detalle factura
+     */
     public void llenarTablaFrameDetalleFactura(){
         SessionFactura sesionFactura = new SessionFactura();
         DefaultTableModel tablaFactura = (DefaultTableModel) FrameDetalleFactura.tbDetalleFactura.getModel();

@@ -16,7 +16,9 @@ import mx.itson.xemlet.presentacion.FrameAgregarLlamada;
  * @author javiershaka
  */
 public class ControladorLlamada {
-    
+    /**
+     * metodo para agregar llamada a cliente
+     */
     public void AgregarLlamada(){
         
         Llamada llamada = new Llamada();
