@@ -19,7 +19,10 @@ public class FrameDetalleFactura extends javax.swing.JDialog {
     public FrameDetalleFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        //manda a llamar al controlador y al metodo llenar frame detalle factura para llenar la tabla
         new ControladorFrameDetalleFactura().llenarTablaFrameDetalleFactura();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,8 +36,12 @@ public class FrameDetalleFactura extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDetalleFactura = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbDetalleFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,25 +68,27 @@ public class FrameDetalleFactura extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tbDetalleFactura);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1160, 220));
+
+        jButton1.setText("Cerar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/8345a503dcd08054362b4b451cc12927.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 250));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // se hace invisible la ventana
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +133,8 @@ public class FrameDetalleFactura extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable tbDetalleFactura;
     // End of variables declaration//GEN-END:variables

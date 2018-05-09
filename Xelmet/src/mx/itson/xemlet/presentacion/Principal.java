@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package mx.itson.xemlet.presentacion;
+
+import javax.swing.JOptionPane;
 import javax.swing.JToolTip;
 import mx.itson.xemlet.nucleo.controlador.ControladorFramePrincipal;
 import mx.itson.xemlet.nucleo.controlador.ControladorLlamada;
 import mx.itson.xemlet.persistencia.SessionCliente;
 import mx.itson.xemlet.persistencia.SessionFactura;
+import mx.itson.xemlet.persistencia.SessionPaquete;
+
 /**
  *
  * @author javiershaka
@@ -21,11 +25,11 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //manda a llamar a los controlador del frame principal para que llene las 3 tablas de cliente, paquetes y facturas
         new ControladorFramePrincipal().llenarTablaFramePrincipalClientes();
         new ControladorFramePrincipal().llenarTablaFramePrincipalPaquetes();
         new ControladorFramePrincipal().llenarTablaFramePrincipalFactura();
-        
-        
+
     }
 
     /**
@@ -39,30 +43,42 @@ public class Principal extends javax.swing.JFrame {
 
         canvas1 = new java.awt.Canvas();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbClientes = new javax.swing.JTable();
-        btnVerFactura = new javax.swing.JButton();
-        btAgregarCliente = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btAgregarCliente = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        btnVerFactura = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPaquetes = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbFactura = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
+        labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(709, 277, -1, -1));
 
         jTabbedPane2.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
+        jTabbedPane2.addTab("Principal", jLabel1);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +109,36 @@ public class Principal extends javax.swing.JFrame {
             tbClientes.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 250));
+
+        jButton1.setBackground(new java.awt.Color(102, 204, 0));
+        jButton1.setText("Eliminar cliente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 130, -1));
+
+        btAgregarCliente.setBackground(new java.awt.Color(102, 204, 0));
+        btAgregarCliente.setText("Agregar cliente");
+        btAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarClienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btAgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
+
+        jButton5.setBackground(new java.awt.Color(102, 204, 0));
+        jButton5.setText("Modificar Cliente");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+
+        btnVerFactura.setBackground(new java.awt.Color(102, 204, 0));
         btnVerFactura.setText("Ver Registro");
         btnVerFactura.setToolTipText("Muestra la informacion sobre el estado del cliente");
         btnVerFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -100,73 +146,24 @@ public class Principal extends javax.swing.JFrame {
                 btnVerFacturaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnVerFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, -1));
 
-        btAgregarCliente.setText("Agregar cliente");
-        btAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarClienteActionPerformed(evt);
-            }
-        });
-
+        jButton3.setBackground(new java.awt.Color(102, 204, 0));
         jButton3.setText("Agregar llamada");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
 
-        jButton1.setText("Eliminar cliente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Modificar Cliente");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btAgregarCliente)
-                    .addComponent(btnVerFactura)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton5))
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnVerFactura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btAgregarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 770, 330));
 
         jTabbedPane2.addTab("Clientes", jPanel1);
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,49 +190,32 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbPaquetes);
 
-        jButton4.setText("Agregar Paquete");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 420, 245));
 
+        jButton2.setBackground(new java.awt.Color(102, 204, 0));
         jButton2.setText("Modificar Paquete");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2))
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
+        jButton4.setBackground(new java.awt.Color(102, 204, 0));
+        jButton4.setText("Agregar Paquete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 310));
 
         jTabbedPane2.addTab("Paquetes", jPanel3);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,170 +244,140 @@ public class Principal extends javax.swing.JFrame {
         tbFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane4.setViewportView(tbFactura);
 
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 11, 479, 228));
+
         jButton7.setText("Desplegar todo");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 257, -1, -1));
 
         jButton8.setText("Eliminar ");
+        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 257, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton7)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton8)))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 820, 310));
 
         jTabbedPane2.addTab("Facturas", jPanel2);
 
-        jButton6.setBackground(new java.awt.Color(204, 0, 0));
-        jButton6.setText("X");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 810, 310));
+
+        btnClose.setBackground(new java.awt.Color(204, 0, 0));
+        btnClose.setText("X");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnCloseActionPerformed(evt);
             }
         });
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton6)
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
-        );
+        labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
+        getContentPane().add(labelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 830, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFacturaActionPerformed
-        // TODO add your handling code here:
-        if(tbClientes.getSelectedRow() >= 0){
-            Registro factura = new Registro();
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // cierra todo el programa
+        System.exit(0);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
-            factura.setVisible(true);
-        }
-        else{
-            System.out.println("selecciona un dato");
-        }
-        
-    }//GEN-LAST:event_btnVerFacturaActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        FrameAgregarPaquete pakt = new FrameAgregarPaquete(this,true);
-        pakt.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        //validacion si se selecciona un dato
+        if (tbClientes.getSelectedRow() >= 0) {
+            FrameAgregarLlamada frameLlamada = new FrameAgregarLlamada(this, true);
+            frameLlamada.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarClienteActionPerformed
         // TODO add your handling code here:
+        //se hace visible la ventana y se agrega una nueva instancia
         FrameAgregarCliente addClient = new FrameAgregarCliente();
         addClient.setVisible(true);
     }//GEN-LAST:event_btAgregarClienteActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnVerFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFacturaActionPerformed
         // TODO add your handling code here:
-        if(tbClientes.getSelectedRow() >= 0){
-          FrameAgregarLlamada frameLlamada = new FrameAgregarLlamada(this, true);
-        frameLlamada.setVisible(true);  
-        }
-        else{
-            
-        }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+        //validacion para que si se selecciona un dato
+        if (tbClientes.getSelectedRow() >= 0) {
+            Registro factura = new Registro();
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(tbClientes.getSelectedRow() >= 0){
-             new SessionCliente().EliminarCliente(tbClientes.getSelectedRow());
-        new ControladorFramePrincipal().llenarTablaFramePrincipalClientes();
+            factura.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        else{
-            
-        }
-       
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-       FrameAgregarPaquete modificar = new FrameAgregarPaquete(null, true);
-      FrameAgregarPaquete.btnAgregar.setText("Guardar");
-       modificar.setVisible(true);
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVerFacturaActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        if(tbClientes.getSelectedRow() >= 0){
-           FrameAgregarCliente modificarclient = new FrameAgregarCliente();
-        SessionCliente sessionClient = new SessionCliente();
-        modificarclient.setVisible(true);
-        FrameAgregarCliente.txtNombre.setText(""+sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getNombre());
-        FrameAgregarCliente.txtDomicilio.setText(""+sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getDomicilio());
-        FrameAgregarCliente.txtNumeroTelefonico.setText(""+sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getNumeroTelefonico());
-        FrameAgregarCliente.btnAgregar.setText("Guardar"); 
+        //validacion para saber si se selecciona un dato
+        if (tbClientes.getSelectedRow() >= 0) {
+            FrameAgregarCliente modificarclient = new FrameAgregarCliente();
+            SessionCliente sessionClient = new SessionCliente();
+            modificarclient.setVisible(true);
+            FrameAgregarCliente.txtNombre.setText("" + sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getNombre());
+            FrameAgregarCliente.txtDomicilio.setText("" + sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getDomicilio());
+            FrameAgregarCliente.txtNumeroTelefonico.setText("" + sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getNumeroTelefonico());
+            FrameAgregarCliente.btnAgregar.setText("Guardar");
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        else{
-            System.out.println("asd");
-        }
-        
-        
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        //validacion para saber si es seleccionado un dato
+        if (tbClientes.getSelectedRow() >= 0) {
+            new SessionCliente().EliminarCliente(tbClientes.getSelectedRow());
+            new ControladorFramePrincipal().llenarTablaFramePrincipalClientes();
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        //se instancia la ventana detallefactura y se hace visible
         FrameDetalleFactura detaFactura = new FrameDetalleFactura(this, true);
         detaFactura.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //validacion para saber si se selecciona un dato de la tabla paquetes
+        if (tbPaquetes.getSelectedRow() > 0) {
+            FrameAgregarPaquete modificar = new FrameAgregarPaquete(null, true);
+            SessionPaquete sesionPaquete = new SessionPaquete();
+            FrameAgregarPaquete.btnAgregar.setText("Guardar");
+
+            FrameAgregarPaquete.txtLlamadasAdicionales.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getCostoAdicionalPorLlamada());
+            FrameAgregarPaquete.txtLlamadasFijas.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getLlamadasFijas());
+            FrameAgregarPaquete.txtMinutosAdicionales.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getCostoAdicionalPorMinitos());
+            FrameAgregarPaquete.txtMinutosCelular.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getMinutosACelular());
+            FrameAgregarPaquete.txtNombre.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getNombre());
+            FrameAgregarPaquete.txtPrecio.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getPrecio());
+            modificar.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null,"Favor de seleccionar un dato de la tabla","Aviso" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        //se instancia el frame agregar paquete
+        FrameAgregarPaquete pakt = new FrameAgregarPaquete(this, true);
+        pakt.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,17 +415,21 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAgregarCliente;
-    private javax.swing.JButton btnVerFactura;
+    public static javax.swing.JButton btAgregarCliente;
+    private javax.swing.JButton btnClose;
+    public static javax.swing.JButton btnVerFactura;
     private java.awt.Canvas canvas1;
-    private javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public static javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    public static javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -483,6 +437,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel labelFondo;
     public static javax.swing.JTable tbClientes;
     public static javax.swing.JTable tbFactura;
     public static javax.swing.JTable tbPaquetes;
