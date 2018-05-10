@@ -19,7 +19,7 @@ public class FrameDetalleFactura extends javax.swing.JDialog {
     public FrameDetalleFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         //manda a llamar al controlador y al metodo llenar frame detalle factura para llenar la tabla
         new ControladorFrameDetalleFactura().llenarTablaFrameDetalleFactura();
         this.setLocationRelativeTo(null);

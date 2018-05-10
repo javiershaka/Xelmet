@@ -12,13 +12,16 @@ import mx.itson.xemlet.presentacion.Principal;
 import mx.itson.xemlet.presentacion.Registro;
 import mx.itson.xemlet.presentacion.FrameFactura;
 import mx.itson.xemlet.nucleo.entidades.Factura;
+
 /**
  *
  * @author javiershaka
  */
 public class ControladorFactura {
+
     /**
-     * en este metodo se verifica que los datos de la factura esten correctos si no entonces no se ejecutara la factura
+     * en este metodo se verifica que los datos de la factura esten correctos si
+     * no entonces no se ejecutara la factura
      */
     public void VerificarFacturar() {
         /**
@@ -81,35 +84,35 @@ public class ControladorFactura {
             }
             cargo = AdicionalCelular + AdicionalLlamadas;
             total = cargo + cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getPrecio();
-                //se lleman el frame factura
-            FrameFactura.txtCostoPaquete.setText(""+cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getPrecio());
-            FrameFactura.txtCargosAdicionales.setText(""+cargo);
-            FrameFactura.txtTotal.setText(""+total);
+            //se lleman el frame factura
+            FrameFactura.txtCostoPaquete.setText("" + cliente.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getPaquete().getPrecio());
+            FrameFactura.txtCargosAdicionales.setText("" + cargo);
+            FrameFactura.txtTotal.setText("" + total);
             //condicion para facturar
-            if(llamadasRealizadas>0 ){
+            if (llamadasRealizadas > 0) {
                 FrameFactura.btnVG.setText("Facturar");
+            } else {
+                JOptionPane.showMessageDialog(null, "La fecha que ingreso no coincide con algun registro", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             }
-            else{
-                JOptionPane.showMessageDialog(null,"La fecha que ingreso no coincide con algun registro","Aviso" ,JOptionPane.INFORMATION_MESSAGE);
-            }
-           
+
         }
 
     }
+
     /**
-     * Metodo donde se agrega una factura 
+     * Metodo donde se agrega una factura
      */
-    public void AgregarFactura(){
+    public void AgregarFactura() {
         Factura factura = new Factura();
-        factura.setCargosAdicionales(Double.parseDouble(""+FrameFactura.txtCargosAdicionales.getText()));
-        factura.setCostoPaquete(Double.parseDouble(""+FrameFactura.txtCostoPaquete.getText()));
-        factura.setFecha(""+FrameFactura.cbMes.getSelectedItem().toString()+"/"+FrameFactura.txtAño.getText());
-        factura.setIdCliente(Integer.parseInt(""+Registro.txtRegistroCliente.getText()));
-        factura.setLlamadasFijas(Integer.parseInt(""+FrameFactura.txtLlamadasFijas.getText()));
-        factura.setLlamadasMovil(Integer.parseInt(""+FrameFactura.txtMinutosCelular.getText()));
-        factura.setLlamadasRealizadas(Integer.parseInt(""+FrameFactura.txtLlamadasRealizadas.getText()));
-        factura.setNombre(""+Registro.txtNombreCliente.getText());
-        factura.setTotal(Double.parseDouble(""+FrameFactura.txtTotal.getText()));
+        factura.setCargosAdicionales(Double.parseDouble("" + FrameFactura.txtCargosAdicionales.getText()));
+        factura.setCostoPaquete(Double.parseDouble("" + FrameFactura.txtCostoPaquete.getText()));
+        factura.setFecha("" + FrameFactura.cbMes.getSelectedItem().toString() + "/" + FrameFactura.txtAño.getText());
+        factura.setIdCliente(Integer.parseInt("" + Registro.txtRegistroCliente.getText()));
+        factura.setLlamadasFijas(Integer.parseInt("" + FrameFactura.txtLlamadasFijas.getText()));
+        factura.setLlamadasMovil(Integer.parseInt("" + FrameFactura.txtMinutosCelular.getText()));
+        factura.setLlamadasRealizadas(Integer.parseInt("" + FrameFactura.txtLlamadasRealizadas.getText()));
+        factura.setNombre("" + Registro.txtNombreCliente.getText());
+        factura.setTotal(Double.parseDouble("" + FrameFactura.txtTotal.getText()));
         new SessionFactura().AgregarFactura(factura);
     }
 

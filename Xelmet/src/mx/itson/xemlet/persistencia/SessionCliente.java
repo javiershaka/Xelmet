@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import mx.itson.xemlet.nucleo.entidades.Cliente;
-import mx.itson.xemlet.nucleo.entidades.Llamada;
 import mx.itson.xemlet.presentacion.FrameAgregarCliente;
 import mx.itson.xemlet.presentacion.Principal;
 import org.hibernate.Session;
@@ -21,11 +20,13 @@ import org.hibernate.Session;
  * @author javiershaka
  */
 public class SessionCliente {
-/**
- * metodo para obtener todos los datos de cliente
- * @param pos devuelve la posicion de la tabla que se seleciona
- * @return 
- */
+
+    /**
+     * metodo para obtener todos los datos de cliente
+     *
+     * @param pos devuelve la posicion de la lista que se seleciona
+     * @return
+     */
     public List<Cliente> obtenerTodos(int pos) {
 
         List<Cliente> clientes = new ArrayList<>();
@@ -45,10 +46,12 @@ public class SessionCliente {
         }
         return clientes;
     }
-/**
- * metodo para agregar cliente en base de tados
- * @param client recive un parametro de objeto cliente para agregarlo
- */
+
+    /**
+     * metodo para agregar cliente en base de tados
+     *
+     * @param client recive un parametro de objeto cliente para agregarlo
+     */
     public void AgregarCliente(Cliente client) {
 
         try {
@@ -58,8 +61,10 @@ public class SessionCliente {
             CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
             criteria.from(Cliente.class);
 
-            //
+            // hace la transicion para verificar 
             session.beginTransaction();
+            // se guarda el objeto cliente
+            //dato se tiene que tener el id del cliente a modificar previamente para que sea una modificacion exitosa
             session.save(client);
             session.getTransaction().commit();
             session.close();
@@ -71,8 +76,10 @@ public class SessionCliente {
         }
 
     }
+
     /**
      * metodo para eliminar cliente
+     *
      * @param pos recive el parametro de la posicion de la tabla
      */
     public void EliminarCliente(int pos) {
@@ -80,7 +87,8 @@ public class SessionCliente {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
+            // se crea un casting donde el objeto se toma referencia al objeto y la posicion para obtener el id 
+            // ya que necesitas el id para poder eliminarlo en la base de datos 
             p = (Cliente) session.get(Cliente.class, obtenerTodos(pos).get(pos).getId());
             p.getLlamadas().clear();
             session.delete(p);
@@ -91,8 +99,10 @@ public class SessionCliente {
             System.out.println("Ocurrió un error al intentar obtener registros");
         }
     }
+
     /**
-     * metodo para modificar cliente 
+     * metodo para modificar cliente
+     *
      * @param c recive un parametro de objeto cliente para modificarlo
      */
     public void modificarCliente(Cliente c) {
@@ -100,7 +110,8 @@ public class SessionCliente {
             Cliente client;
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-             c = (Cliente) session.get(Cliente.class, obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getId());
+            // hace un castin para que se cree con el objeto y sacar el id del cliente ya que es necesario para la modificacion del cliente ne la base de datos
+            c = (Cliente) session.get(Cliente.class, obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getId());
             c.setDomicilio("" + FrameAgregarCliente.txtDomicilio.getText());
             c.setNombre("" + FrameAgregarCliente.txtNombre.getText());
             c.setNumeroTelefonico("" + FrameAgregarCliente.txtNumeroTelefonico.getText());
@@ -113,6 +124,5 @@ public class SessionCliente {
         }
 
     }
-
 
 }

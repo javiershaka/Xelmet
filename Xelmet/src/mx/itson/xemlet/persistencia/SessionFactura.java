@@ -12,12 +12,16 @@ import javax.persistence.criteria.CriteriaQuery;
 import mx.itson.xemlet.nucleo.entidades.Factura;
 import org.hibernate.Session;
 
-
 /**
  *
  * @author javiershaka
  */
 public class SessionFactura {
+
+    /**
+     *
+     * @return devuelve una lista de la clase factura
+     */
     public List<Factura> obtenerTodos() {
         List<Factura> paquetes = new ArrayList<>();
         try {
@@ -27,31 +31,32 @@ public class SessionFactura {
             criteria.from(Factura.class);
             paquetes = session.createQuery(criteria).getResultList();
             paquetes.size();
-          
+
             session.close();
         } catch (Exception ex) {
             System.out.println("Ocurió un error al intentar obtener registros");
         }
         return paquetes;
     }
-    public void AgregarFactura(Factura f){
+
+    /**
+     *
+     * @param f recibe como parametro un objeto de la clase cliente para poder
+     * agregar a la base de datos
+     */
+    public void AgregarFactura(Factura f) {
         try {
-            
+
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-           
+
             session.save(f);
             session.getTransaction().commit();
             session.close();
         } catch (Exception ex) {
             System.out.println("Ocurrió un error al intentar obtener registros");
         }
-        
-        
-        
+
     }
-    
-    
-    
-    
+
 }

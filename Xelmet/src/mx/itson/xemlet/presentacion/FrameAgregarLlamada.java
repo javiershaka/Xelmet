@@ -5,6 +5,7 @@
  */
 package mx.itson.xemlet.presentacion;
 
+import javax.swing.JOptionPane;
 import mx.itson.xemlet.nucleo.controlador.ControladorLlamada;
 
 /**
@@ -18,7 +19,7 @@ public class FrameAgregarLlamada extends javax.swing.JDialog {
      */
     public FrameAgregarLlamada(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-       
+
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -62,6 +63,7 @@ public class FrameAgregarLlamada extends javax.swing.JDialog {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 55, -1, -1));
 
         txtReceptor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####"))));
+        txtReceptor.setToolTipText("numero a llamar");
         getContentPane().add(txtReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 21, 184, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,6 +71,7 @@ public class FrameAgregarLlamada extends javax.swing.JDialog {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 81, -1, -1));
 
         txtDuracion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###"))));
+        txtDuracion.setToolTipText("Duracion en minutos");
         getContentPane().add(txtDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 78, 184, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,8 +112,13 @@ public class FrameAgregarLlamada extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // manda a llamar al frame llamada
-        new ControladorLlamada().AgregarLlamada();
-        this.setVisible(false);
+        if (!txtAño.getText().isEmpty() && !txtDuracion.getText().isEmpty() && !txtReceptor.getText().isEmpty() && cbDias.getSelectedIndex() > 0 && cbMes.getSelectedIndex() > 0) {
+            new ControladorLlamada().AgregarLlamada();
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor de llenar todos los datos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

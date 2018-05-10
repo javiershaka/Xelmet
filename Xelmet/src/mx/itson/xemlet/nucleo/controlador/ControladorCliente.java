@@ -15,24 +15,23 @@ import mx.itson.xemlet.presentacion.FrameAgregarCliente;
  * @author javiershaka
  */
 public class ControladorCliente {
+
     /**
-     * En este metodo se agrega cliente 
+     * En este metodo se agrega cliente
      */
     public void AgregarCliente() {
-        
 
         //se crea un objeto de la clase cliente
-            Cliente cliente = new Cliente();
-            cliente.setDomicilio("" + FrameAgregarCliente.txtDomicilio.getText());
-            cliente.setNombre("" + FrameAgregarCliente.txtNombre.getText());
-            cliente.setNumeroTelefonico("" + FrameAgregarCliente.txtNumeroTelefonico.getText());
-            cliente.setPaquete(new SessionPaquete().obtenerTodos().get(FrameAgregarCliente.cmbxPaquete.getSelectedIndex()));
-                //manda a llamar al metodo agregar y devuelve el valor en objeto cliente
-            new SessionCliente().AgregarCliente(cliente);
-        
-        
+        Cliente cliente = new Cliente();
+        cliente.setDomicilio("" + FrameAgregarCliente.txtDomicilio.getText());
+        cliente.setNombre("" + FrameAgregarCliente.txtNombre.getText());
+        cliente.setNumeroTelefonico("" + FrameAgregarCliente.txtNumeroTelefonico.getText());
+        cliente.setPaquete(new SessionPaquete().obtenerTodos().get(FrameAgregarCliente.cmbxPaquete.getSelectedIndex()));
+        //manda a llamar al metodo agregar y devuelve el valor en objeto cliente
+        new SessionCliente().AgregarCliente(cliente);
 
     }
+
     /**
      * en este metodo modifica el clente creando un nuevo cliente
      */
@@ -40,13 +39,14 @@ public class ControladorCliente {
     public void ModificarCliente() {
 
         Cliente cliente = new Cliente();
-        
-        
+
         new SessionCliente().modificarCliente(cliente);
 
     }
+
     /**
-     * En este metodo agregarOrModificarcliente es una validadcion para que de ahi se eecute uno de los dos metodos
+     * En este metodo agregarOrModificarcliente es una validadcion para que de
+     * ahi se eecute uno de los dos metodos
      */
     public void AgregarOrModificarCliente() {
         if (FrameAgregarCliente.btnAgregar.getText().equalsIgnoreCase("Aceptar")) {

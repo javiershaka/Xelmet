@@ -4,6 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ *
+ * @author javiershaka en esta clase tenemos id que es el identificador nombre
+ * del maquete minutos que ofrece el paquete a celular llamadasFijas que son las
+ * llamadas fijas que ofrece el paquete precio del paquete costo adicional por
+ * llamada si te pasas del paquete costo adcional por minutos por si sobrepasas
+ * el paquete
+ */
 @Entity
 public class Paquete {
 
@@ -115,6 +123,4 @@ public class Paquete {
         this.costoAdicionalPorMinitos = costoAdicionalPorMinitos;
     }
 
-
-    
 }

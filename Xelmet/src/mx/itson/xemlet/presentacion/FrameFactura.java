@@ -21,9 +21,9 @@ public class FrameFactura extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         //se llena el nombre nombre con el nombre del clienteS
-        txtNombre.setText(""+Registro.txtNombreCliente.getText());
+        txtNombre.setText("" + Registro.txtNombreCliente.getText());
         this.setLocationRelativeTo(null);
-      
+
     }
 
     /**
@@ -66,6 +66,8 @@ public class FrameFactura extends javax.swing.JDialog {
             }
         });
         getContentPane().add(cbMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 11, -1, -1));
+
+        txtAño.setToolTipText("Año");
         getContentPane().add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 11, 135, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,17 +144,17 @@ public class FrameFactura extends javax.swing.JDialog {
     private void btnVGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVGActionPerformed
         // TODO add your handling code here:
         //validacion para saber que metodo llamar en su caso verificar si existe el registro o si ya esta facturar
-       if(btnVG.getText().equalsIgnoreCase("Facturar")){
+        if (btnVG.getText().equalsIgnoreCase("Facturar")) {
             new ControladorFactura().AgregarFactura();
             new ControladorFramePrincipal().llenarTablaFramePrincipalFactura();
             this.setVisible(false);
         }
-        if(btnVG.getText().equalsIgnoreCase("Verificar")){
-             new ControladorFactura().VerificarFacturar();
-             
+        if (btnVG.getText().equalsIgnoreCase("Verificar")) {
+            new ControladorFactura().VerificarFacturar();
+
         }
-        
-        
+
+
     }//GEN-LAST:event_btnVGActionPerformed
 
     private void cbMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMesItemStateChanged

@@ -112,7 +112,7 @@ public class FrameAgregarCliente extends javax.swing.JFrame {
             new ControladorFramePrincipal().llenarTablaFramePrincipalClientes();
             this.setVisible(false);
         } else {
-            
+
         }
 
     }//GEN-LAST:event_btnAgregarActionPerformed

@@ -8,16 +8,23 @@ package mx.itson.xemlet.nucleo.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
- * @author javiershaka
+ * @author javiershaka en esta clase guarda todos los datos de la factura como
+ * id de la factura idCliente que ahce referencia al id de cliente nombre que
+ * hace referencia a nombre del cliente fecha , llamadas movil que son los
+ * minutos que realizo en total en ese mes de factura llamadas fijas que son las
+ * llamadas fijas que realizo y las llamadas en total llamadas realizadas costo
+ * del paquete que guarda nomas el dato del costo en ese momento del facturado o
+ * de la fecha en si cargos adicionales por si se pasa de las condiciones del
+ * paquete y total ningun dato esta relacionado ya que si estubieran se
+ * modificarian cuando actualizaramos los paquetes y en si no guardaria ningun
+ * dato
  */
 @Entity
 public class Factura {
+
     private int id;
     private int idCliente;
     private String nombre;
@@ -32,10 +39,9 @@ public class Factura {
     /**
      * @return the id
      */
-        @Id
+    @Id
     @GeneratedValue
-  
-    
+
     public int getId() {
         return id;
     }
@@ -50,7 +56,6 @@ public class Factura {
     /**
      * @return the idCliente
      */
-  
     public int getIdCliente() {
         return idCliente;
     }
@@ -177,8 +182,4 @@ public class Factura {
     /**
      * @return the id
      */
-
-    
-    
-    
 }

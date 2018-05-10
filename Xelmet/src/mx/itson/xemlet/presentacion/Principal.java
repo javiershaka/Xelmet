@@ -6,14 +6,12 @@
 package mx.itson.xemlet.presentacion;
 
 import javax.swing.JOptionPane;
-import javax.swing.JToolTip;
 import mx.itson.xemlet.nucleo.controlador.ControladorFramePrincipal;
-import mx.itson.xemlet.nucleo.controlador.ControladorLlamada;
 import mx.itson.xemlet.persistencia.SessionCliente;
-import mx.itson.xemlet.persistencia.SessionFactura;
 import mx.itson.xemlet.persistencia.SessionPaquete;
 
 /**
+ * https://github.com/javiershaka/Xemlet entra en github
  *
  * @author javiershaka
  */
@@ -66,6 +64,7 @@ public class Principal extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -273,6 +272,10 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/xemletchiqui.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
+
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
         getContentPane().add(labelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 830, 480));
 
@@ -354,7 +357,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //validacion para saber si se selecciona un dato de la tabla paquetes
-        if (tbPaquetes.getSelectedRow() > 0) {
+        if (tbPaquetes.getSelectedRow() >= 0) {
             FrameAgregarPaquete modificar = new FrameAgregarPaquete(null, true);
             SessionPaquete sesionPaquete = new SessionPaquete();
             FrameAgregarPaquete.btnAgregar.setText("Guardar");
@@ -367,7 +370,7 @@ public class Principal extends javax.swing.JFrame {
             FrameAgregarPaquete.txtPrecio.setText("" + sesionPaquete.obtenerTodos().get(tbPaquetes.getSelectedRow()).getPrecio());
             modificar.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null,"Favor de seleccionar un dato de la tabla","Aviso" ,JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -430,6 +433,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -46,7 +46,6 @@ public class ControladorPaquete {
         p.setPrecio(Double.parseDouble("" + FrameAgregarPaquete.txtPrecio.getText()));
         p.setCostoAdicionalPorMinitos(Integer.parseInt("" + FrameAgregarPaquete.txtMinutosAdicionales.getText()));
         p.setCostoAdicionalPorLlamada(Integer.parseInt("" + FrameAgregarPaquete.txtLlamadasAdicionales.getText()));
-        System.out.println("antes de llamar " + p.getNombre());
 
         new SessionPaquete().ModificarPaquete(p);
 

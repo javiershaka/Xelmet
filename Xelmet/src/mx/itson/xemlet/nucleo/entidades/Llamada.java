@@ -3,14 +3,24 @@ package mx.itson.xemlet.nucleo.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+/**
+ *
+ * @author javiershaka en esta clase tenemos id que es su identificador receptor
+ * a quien llamara tipoLlamada si es llamada FIJA o MOVIL duracion donde se
+ * redondea si es menor o mayor dependiendo los segundos que le pongas y por eso
+ * es un int fecha donde guarda la fecha idReferencial que guarda el id de
+ * cliente para hacer la referencia a ese cliente en la relacion oneToMany
+ *
+ */
 @Entity
 public class Llamada {
-    
+
     private int id;
     private String receptor;
     private String tipoLlamada;
     private int duracionMinutos;
-  
+
     private String fecha;
     private int idReferencial;
 
@@ -44,9 +54,6 @@ public class Llamada {
         this.receptor = receptor;
     }
 
-  
- 
-
     /**
      * @return the duracionMinutos
      */
@@ -60,8 +67,6 @@ public class Llamada {
     public void setDuracionMinutos(int duracionMinutos) {
         this.duracionMinutos = duracionMinutos;
     }
-
-   
 
     /**
      * @return the fecha
@@ -92,7 +97,7 @@ public class Llamada {
     }
 
     /**
-     * @return the idReferencial
+     * @return the idReferencial el id hace referencia al id del cliente 
      */
     public int getIdReferencial() {
         return idReferencial;
@@ -105,7 +110,4 @@ public class Llamada {
         this.idReferencial = idReferencial;
     }
 
-   
- 
-     
 }
