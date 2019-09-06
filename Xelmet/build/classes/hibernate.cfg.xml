@@ -20,7 +20,7 @@
             root
         </property>
         <property name="hibernate.connection.password">
-            root
+            javiershaka
         </property>
         <mapping class="mx.itson.xemlet.nucleo.entidades.Llamada"/>
         <mapping class="mx.itson.xemlet.nucleo.entidades.Paquete"/>
