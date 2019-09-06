@@ -145,12 +145,12 @@ public class FrameFactura extends javax.swing.JDialog {
         // TODO add your handling code here:
         //validacion para saber que metodo llamar en su caso verificar si existe el registro o si ya esta facturar
         if (btnVG.getText().equalsIgnoreCase("Facturar")) {
-            new ControladorFactura().AgregarFactura();
+            //new ControladorFactura().AgregarFactura();
             new ControladorFramePrincipal().llenarTablaFramePrincipalFactura();
             this.setVisible(false);
         }
         if (btnVG.getText().equalsIgnoreCase("Verificar")) {
-            new ControladorFactura().VerificarFacturar();
+            //new ControladorFactura().VerificarFacturar();
 
         }
 

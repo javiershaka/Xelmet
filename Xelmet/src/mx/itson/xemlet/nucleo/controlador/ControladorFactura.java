@@ -11,6 +11,7 @@ import mx.itson.xemlet.persistencia.SessionCliente;
 /**
  *
  * @author javiershaka
+ * @version 0.8
  */
 public class ControladorFactura {
     //cambia la variable para acceder el diferente tipo de cliente del  0 al 4 por lo pronto
