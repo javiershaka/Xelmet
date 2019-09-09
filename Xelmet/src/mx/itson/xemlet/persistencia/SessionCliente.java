@@ -111,11 +111,7 @@ public class SessionCliente {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             // hace un castin para que se cree con el objeto y sacar el id del cliente ya que es necesario para la modificacion del cliente ne la base de datos
-            c = (Cliente) session.get(Cliente.class, obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getId());
-            c.setDomicilio("" + FrameAgregarCliente.txtDomicilio.getText());
-            c.setNombre("" + FrameAgregarCliente.txtNombre.getText());
-            c.setNumeroTelefonico("" + FrameAgregarCliente.txtNumeroTelefonico.getText());
-            c.setPaquete(new SessionPaquete().obtenerTodos().get(FrameAgregarCliente.cmbxPaquete.getSelectedIndex()));
+  
             session.update(c);
             session.getTransaction().commit();
             session.close();

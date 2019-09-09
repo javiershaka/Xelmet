@@ -24,14 +24,9 @@ public class ControladorFramePrincipal {
     public void llenarTablaFramePrincipalClientes() {
 
         SessionCliente sesionCliente = new SessionCliente();
-        DefaultTableModel tablaClientes = (DefaultTableModel) Principal.tbClientes.getModel();
+   
 
-        tablaClientes.setRowCount(0);
-        for (int q = 0; q < sesionCliente.obtenerTodos(0).size(); q++) {
-            tablaClientes.addRow(new Object[]{sesionCliente.obtenerTodos(q).get(q).getId() + "", "" + sesionCliente.obtenerTodos(q).get(q).getNombre()});
-
-        }
-        Principal.tbClientes.setModel(tablaClientes);
+       
 
     }
 

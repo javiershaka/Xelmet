@@ -43,12 +43,9 @@ public class Principal extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbClientes = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         btAgregarCliente = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        btnVerFactura = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -79,37 +76,6 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nombre"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tbClientes);
-        if (tbClientes.getColumnModel().getColumnCount() > 0) {
-            tbClientes.getColumnModel().getColumn(0).setResizable(false);
-            tbClientes.getColumnModel().getColumn(1).setResizable(false);
-        }
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 250));
-
         jButton1.setBackground(new java.awt.Color(102, 204, 0));
         jButton1.setText("Eliminar cliente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +83,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 130, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 130, -1));
 
         btAgregarCliente.setBackground(new java.awt.Color(102, 204, 0));
         btAgregarCliente.setText("Agregar cliente");
@@ -126,7 +92,7 @@ public class Principal extends javax.swing.JFrame {
                 btAgregarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btAgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
+        jPanel1.add(btAgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(102, 204, 0));
         jButton5.setText("Modificar Cliente");
@@ -135,17 +101,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
-
-        btnVerFactura.setBackground(new java.awt.Color(102, 204, 0));
-        btnVerFactura.setText("Ver Registro");
-        btnVerFactura.setToolTipText("Muestra la informacion sobre el estado del cliente");
-        btnVerFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerFacturaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVerFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(102, 204, 0));
         jButton3.setText("Agregar llamada");
@@ -154,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/xemlet/presentacion/imagenes/1.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -290,13 +246,8 @@ public class Principal extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //validacion si se selecciona un dato
-        if (tbClientes.getSelectedRow() >= 0) {
-            FrameAgregarLlamada frameLlamada = new FrameAgregarLlamada(this, true);
-            frameLlamada.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-
-        }
+     
+ 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarClienteActionPerformed
@@ -306,29 +257,14 @@ public class Principal extends javax.swing.JFrame {
         addClient.setVisible(true);
     }//GEN-LAST:event_btAgregarClienteActionPerformed
 
-    private void btnVerFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFacturaActionPerformed
-        // TODO add your handling code here:
-        //validacion para que si se selecciona un dato
-        if (tbClientes.getSelectedRow() >= 0) {
-            Registro factura = new Registro();
-
-            factura.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btnVerFacturaActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         //validacion para saber si se selecciona un dato
-        if (tbClientes.getSelectedRow() >= 0) {
+        if (true) {
             FrameAgregarCliente modificarclient = new FrameAgregarCliente();
             SessionCliente sessionClient = new SessionCliente();
             modificarclient.setVisible(true);
-            FrameAgregarCliente.txtNombre.setText("" + sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getNombre());
-            FrameAgregarCliente.txtDomicilio.setText("" + sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getDomicilio());
-            FrameAgregarCliente.txtNumeroTelefonico.setText("" + sessionClient.obtenerTodos(Principal.tbClientes.getSelectedRow()).get(Principal.tbClientes.getSelectedRow()).getNumeroTelefonico());
-            FrameAgregarCliente.btnAgregar.setText("Guardar");
+           FrameAgregarCliente.btnAgregar.setText("Guardar");
         } else {
             JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -338,12 +274,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //validacion para saber si es seleccionado un dato
-        if (tbClientes.getSelectedRow() >= 0) {
-            new SessionCliente().EliminarCliente(tbClientes.getSelectedRow());
-            new ControladorFramePrincipal().llenarTablaFramePrincipalClientes();
-        } else {
-            JOptionPane.showMessageDialog(null, "Favor de seleccionar un dato de la tabla", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        }
+   
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -420,7 +351,6 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btAgregarCliente;
     private javax.swing.JButton btnClose;
-    public static javax.swing.JButton btnVerFactura;
     private java.awt.Canvas canvas1;
     public static javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -437,12 +367,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel labelFondo;
-    public static javax.swing.JTable tbClientes;
     public static javax.swing.JTable tbFactura;
     public static javax.swing.JTable tbPaquetes;
     // End of variables declaration//GEN-END:variables
